@@ -4,10 +4,7 @@
 
 class BreadthFirstSearch : public SearchAlgorithm {
 
-public:
-    std::vector<StepType>* Search(Grid&) override;
-
 private:
-    std::pair<Coord, std::map<Coord, Coord>>* TraceSteps(Grid&);
+    std::pair<Coord, std::map<Coord, Coord>>* TraceSteps(Grid&) override;
 
 };

@@ -8,6 +8,9 @@
 class SearchAlgorithm {
 
 public:
-    virtual std::vector<StepType>* Search(Grid&) = 0;
+    std::vector<StepType>* Search(Grid&);
+
+private:
+    virtual std::pair<Coord, std::map<Coord, Coord>>* TraceSteps(Grid& grid) = 0;
 
 };

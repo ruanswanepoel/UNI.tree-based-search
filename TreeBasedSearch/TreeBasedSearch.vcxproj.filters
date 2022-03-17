@@ -33,6 +33,15 @@
     <ClCompile Include="src\Algorithms\DepthFirstSearch.cpp">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
+    <ClCompile Include="src\Algorithms\GreedyBestFirst.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Algorithms\AStar.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Algorithms\SearchAlgorithm.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Grid.h">
@@ -50,13 +59,19 @@
     <ClInclude Include="src\Algorithms\SearchAlgorithm.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
-    <ClInclude Include="src\Algorithms\BreadthFirstSearch.h">
-      <Filter>Header Files\Algorithms</Filter>
-    </ClInclude>
     <ClInclude Include="src\AlgorithmFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Algorithms\DepthFirstSearch.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithms\BreadthFirstSearch.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithms\GreedyBestFirst.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithms\AStar.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>

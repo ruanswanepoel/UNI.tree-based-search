@@ -2,7 +2,7 @@
 
 #include "SearchAlgorithm.h"
 
-class DepthFirstSearch : public SearchAlgorithm {
+class GreedyBestFirstAlgorithm : public SearchAlgorithm {
 
 private:
     std::pair<Coord, std::map<Coord, Coord>>* TraceSteps(Grid&) override;

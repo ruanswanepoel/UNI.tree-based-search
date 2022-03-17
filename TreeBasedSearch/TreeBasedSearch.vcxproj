@@ -140,15 +140,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Algorithms\AStar.cpp" />
     <ClCompile Include="src\Algorithms\BreadthFirstSearch.cpp" />
     <ClCompile Include="src\Algorithms\DepthFirstSearch.cpp" />
+    <ClCompile Include="src\Algorithms\GreedyBestFirst.cpp" />
+    <ClCompile Include="src\Algorithms\SearchAlgorithm.cpp" />
     <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AlgorithmFactory.h" />
+    <ClInclude Include="src\Algorithms\AStar.h" />
     <ClInclude Include="src\Algorithms\BreadthFirstSearch.h" />
     <ClInclude Include="src\Algorithms\DepthFirstSearch.h" />
+    <ClInclude Include="src\Algorithms\GreedyBestFirst.h" />
     <ClInclude Include="src\Algorithms\SearchAlgorithm.h" />
     <ClInclude Include="src\Coord.h" />
     <ClInclude Include="src\Grid.h" />

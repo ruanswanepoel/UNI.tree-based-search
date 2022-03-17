@@ -4,8 +4,9 @@ constexpr char EMPTY_CHAR = (char)250;
 constexpr char WALL_CHAR = (char)254;
 constexpr char AGENT_CHAR = (char)175;
 constexpr char GOAL_CHAR = (char)237;
+constexpr char PATH_CHAR = '#';
 
-void Grid::load(std::vector<std::string>& lines) {
+void Grid::Load(std::vector<std::string>& lines) {
 
     // Grid size
     std::string mapSizeStr = get_string_between(lines[0], '[', ']');
@@ -56,7 +57,7 @@ void Grid::load(std::vector<std::string>& lines) {
 
 }
 
-std::vector<std::string> Grid::to_string() {
+std::vector<std::string> Grid::ToString() {
 
     std::vector<std::string> result;
 
@@ -70,6 +71,8 @@ std::vector<std::string> Grid::to_string() {
                 character = GOAL_CHAR;
             else if (m_nodes[row][col] == CellType::wall)
                 character = WALL_CHAR;
+            else if (m_nodes[row][col] == CellType::path)
+                character = PATH_CHAR;
             line.push_back(character);
             line.push_back(' ');
         }
@@ -80,7 +83,7 @@ std::vector<std::string> Grid::to_string() {
 
 }
 
-std::vector<Coord> Grid::get_movable_coords(Coord pos) {
+std::vector<Coord> Grid::GetNeighboringEmptyCoords(Coord pos) {
 
     std::vector<Coord> result;
 
@@ -102,37 +105,20 @@ std::vector<Coord> Grid::get_movable_coords(Coord pos) {
 
 }
 
-std::map<StepType, Coord> Grid::get_movable_steps(Coord pos) {
+StepType Grid::GetStepDirection(Coord from, Coord to) {
 
-    std::map<StepType, Coord> result;
+    StepType direction = StepType::Up;
 
-    Coord up = Coord(pos.Row() - 1, pos.Col());
-    Coord left = Coord(pos.Row(), pos.Col() - 1);
-    Coord down = Coord(pos.Row() + 1, pos.Col());
-    Coord right = Coord(pos.Row(), pos.Col() + 1);
+    if (to.Row() < from.Row())
+        direction = StepType::Up;
+    else if (to.Row() > from.Row())
+        direction = StepType::Down;
+    else if (to.Col() < from.Col())
+        direction = StepType::Left;
+    else if (to.Col() > from.Col())
+        direction = StepType::Right;
 
-    if (pos_available(up.Row(), up.Col()))
-        result.insert({ StepType::Up, up });
-    if (pos_available(left.Row(), left.Col()))
-        result.insert({ StepType::Left, left });
-    if (pos_available(down.Row(), down.Col()))
-        result.insert({ StepType::Down, down });
-    if (pos_available(right.Row(), right.Col()))
-        result.insert({ StepType::Right, right });
-
-    return result;
-
-}
-
-bool Grid::is_goal_position(Coord node) {
-
-    return vector_contains(m_goalPositions, node);
-
-}
-
-bool Grid::agent_at(int row, int col) {
-
-    return m_agentPosition == Coord(row, col);
+    return direction;
 
 }
 
@@ -154,6 +140,9 @@ bool Grid::pos_available(int row, int col) {
     if (row < 0 || row >= m_size.Row() || col < 0 || col >= m_size.Col())
         return false;
 
-    return m_nodes[row][col] == CellType::empty;
+    if (m_nodes[row][col] == CellType::wall)
+        return false;
+
+    return true;
 
 }

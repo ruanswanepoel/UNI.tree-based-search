@@ -8,18 +8,30 @@
 #include "Coord.h"
 #include "Helpers.h"
 
+/// <summary>
+/// A grid of inididual nodes/cells that are defined as either empty cells or walls.
+/// Also keeps track of agent and goal positions.
+/// </summary>
 class Grid {
 
 public:
-    void load(std::vector<std::string>&);
-    std::vector<std::string> to_string();
+    /// <summary>
+    /// Initialises and loads this grid's configuration based on the given
+    /// lines of instructions.
+    /// </summary>
+    /// <param name="lines">Lines of instructions.</param>
+    void Load(std::vector<std::string>& lines);
+    std::vector<std::string> ToString();
 
-    std::vector<Coord> get_movable_coords(Coord);
-    std::map<StepType, Coord> get_movable_steps(Coord);
-    inline Coord get_agent_position() const { return m_agentPosition; }
-    bool is_goal_position(Coord);
+    inline Coord GetAgentPosition() const { return m_agentPosition; }
+    inline bool IsGoalPosition(Coord node) { return vector_contains(m_goalPositions, node); }
 
-    enum class CellType { empty, wall };
+    std::vector<Coord> GetNeighboringEmptyCoords(Coord);
+    StepType GetStepDirection(Coord, Coord);
+
+    inline void SetNodeAsPath(Coord node) { m_nodes[node.Row()][node.Col()] = CellType::path; }
+
+    enum class CellType { empty, wall, path };
 
 private:
     Coord m_size;                                   // rows, cols
@@ -27,8 +39,8 @@ private:
     std::vector<Coord> m_goalPositions;             // row, col
     std::vector<std::vector<CellType>> m_nodes;     // rows * cols
 
-    bool agent_at(int, int);
-    bool goal_at(int, int);
-    bool pos_available(int, int);
+    inline bool agent_at(int row, int col) { return m_agentPosition == Coord(row, col); }
+    bool goal_at(int row, int col);
+    bool pos_available(int row, int col);
 
 };
