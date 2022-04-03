@@ -24,6 +24,7 @@ public:
     std::vector<std::string> ToString();
 
     inline Coord GetAgentPosition() const { return m_agentPosition; }
+    inline std::vector<Coord>& GetGoalPositions() { return m_goalPositions; }
     inline bool IsGoalPosition(Coord node) { return vector_contains(m_goalPositions, node); }
 
     std::vector<Coord> GetNeighboringEmptyCoords(Coord);

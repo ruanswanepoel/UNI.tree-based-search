@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdlib>
 #include <utility>
 
 class Coord {
@@ -14,6 +15,10 @@ public:
     inline bool operator< (const Coord& other) const { return m_coord < other.m_coord; }
     inline bool operator==(const Coord& other) const { return m_coord == other.m_coord; }
     inline bool operator!=(const Coord& other) const { return m_coord != other.m_coord; }
+
+    inline int Distance(Coord other) {
+        return abs(Row() - other.Row()) + abs(Col() - other.Col());
+    }
 
 private:
     std::pair<int, int> m_coord;
