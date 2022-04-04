@@ -12,7 +12,7 @@ public:
     inline int Row() const { return m_coord.first; }
     inline int Col() const { return m_coord.second; }
 
-    inline bool operator< (const Coord& other) const { return m_coord < other.m_coord; }
+    inline bool operator< (const Coord& other) const { return m_coord <  other.m_coord; }
     inline bool operator==(const Coord& other) const { return m_coord == other.m_coord; }
     inline bool operator!=(const Coord& other) const { return m_coord != other.m_coord; }
 
